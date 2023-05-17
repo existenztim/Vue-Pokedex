@@ -1,47 +1,78 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="container">
+    <header>
+      <h1>Vue Quiz APP</h1>
+      <input type="text" placeholder="Search category..." />
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="options-container">
+      <div class="card">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/2/2c/PlayStationConsole_bkg-transparent.png"
+          alt=""
+        />
+        <div class="card-text">
+          <h3>Playstation 1</h3>
+          <p>15 questions</p>
+        </div>
+      </div>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<style scoped lang="scss">
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
   header {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    align-items: flex;
+
+    h1 {
+      font-weight: bold;
+      margin-right: 2rem;
+    }
+
+    input {
+      border: none;
+      background-color: rgba($color: #616161, $alpha: 0.5);
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
+  .options-container {
     display: flex;
-    place-items: flex-start;
     flex-wrap: wrap;
+    margin-top: 2rem;
+
+    .card {
+      width: 300px;
+      overflow: hidden;
+      border-radius: 2%;
+      box-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.8);
+      margin-bottom: 35px;
+      margin-right: 20px;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 190px;
+        margin: 0;
+      }
+      .card-text {
+        padding: 0 0.25rem;
+
+        h3 {
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
 </style>
