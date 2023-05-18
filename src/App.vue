@@ -1,21 +1,43 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, watch } from "vue";
+import r from "./data/quiz.json";
+import axios from "axios";
+
+const fetchPokemon = async () => {
+  axios.get("https://pokeapi.co/api/v2/region/").then((response) => {
+    console.log(response.data.results);
+  });
+};
+const regions = ref(r);
+const search = ref("");
+const checkRegions = ref(false);
+
+watch(search, () => {
+  regions.value = r.filter((region) => region.name.toLowerCase().includes(search.value));
+  if (regions.value.length > 0) {
+    checkRegions.value = false;
+  } else {
+    checkRegions.value = true;
+  }
+});
+
+fetchPokemon();
+</script>
 
 <template>
   <div class="container">
     <header>
       <h1>Vue Quiz APP</h1>
-      <input type="text" placeholder="Search category..." />
+      <input v-model.trim="search" type="text" placeholder="Search category..." />
     </header>
-
+    <button @click="fetchPokemon">tryck</button>
+    <p v-if="checkRegions">No matches 😢</p>
     <div class="options-container">
-      <div class="card">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/2/2c/PlayStationConsole_bkg-transparent.png"
-          alt=""
-        />
+      <div v-for="region in regions" class="card" :key="region.id">
+        <img :src="region.img" :alt="`an overlay image of the pokemon region ${region.name}`" />
         <div class="card-text">
-          <h3>Playstation 1</h3>
-          <p>15 questions</p>
+          <h3>{{ region.name }}</h3>
+          <p>{{ region.url }} questions</p>
         </div>
       </div>
     </div>
