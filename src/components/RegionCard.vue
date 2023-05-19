@@ -1,13 +1,14 @@
 <script setup lang="ts">
-const props = defineProps(["regionProp"]);
+const { regionProp } = defineProps(["regionProp"]);
+// if we only write regionProp without {} we would have to type varname.regionProp.img
 </script>
 
 <template>
   <button class="card">
-    <img :src="props.regionProp.img" :alt="props.regionProp.alt" />
+    <img :src="regionProp.img" :alt="`A layout image of the ${regionProp.name} region.`" />
     <div class="card-text">
-      <h3>{{ props.regionProp.name.toUpperCase() }}</h3>
-      <p>{{ props.regionProp.pokemons }} number of pokemons</p>
+      <h3>{{ regionProp.name.toUpperCase() }}</h3>
+      <p>{{ regionProp.pokemons }} number of pokemons</p>
     </div>
   </button>
 </template>
