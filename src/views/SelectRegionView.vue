@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { RouterView } from "vue-router";
 import r from "../data/quiz.json";
 import axios from "axios";
 import RegionCard from "../components/regionCard.vue";
-import HomeLink from "../components/HomeLink.vue";
 import type { Region } from "../models/regionsModel";
 
 const fetchPokemon = async () => {
@@ -28,7 +26,6 @@ watch(search, () => {
 <template>
   <div class="container">
     <header>
-      <!--<HomeLink />-->
       <input v-model.trim="search" type="text" placeholder="Search category..." />
     </header>
     <button @click="fetchPokemon">tryck för att testa fetch</button>

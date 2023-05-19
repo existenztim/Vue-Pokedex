@@ -4,13 +4,13 @@ const { regionProp } = defineProps(["regionProp"]);
 </script>
 
 <template>
-  <button class="card">
+  <RouterLink to="/region" class="card">
     <img :src="regionProp.img" :alt="`A layout image of the ${regionProp.name} region.`" />
     <div class="card-text">
       <h3>{{ regionProp.name.toUpperCase() }}</h3>
       <p>{{ regionProp.pokemons }} number of pokemons</p>
     </div>
-  </button>
+  </RouterLink>
 </template>
 
 <style scoped lang="scss">

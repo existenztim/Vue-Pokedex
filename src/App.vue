@@ -6,9 +6,7 @@ import HomeLink from "./components/HomeLink.vue";
 </script>
 
 <template>
-  <div class="home-link">
-    <HomeLink />
-  </div>
+  <div class="home-link"><HomeLink /></div>
   <RouterView />
 </template>
 
