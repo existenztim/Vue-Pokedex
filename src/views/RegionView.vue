@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+//here i want to import the props
+</script>
 
 <template>
-  <h1>här ska info om en specifik region visas</h1>
+  <h1>write props.name here</h1>
 </template>
 
 <style scoped lang="scss"></style>

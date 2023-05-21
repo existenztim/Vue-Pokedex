@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 import r from "../data/quiz.json";
 import axios from "axios";
-import RegionCard from "../components/regionCard.vue";
+import RegionCard from "../components/RegionCard.vue";
 import type { Region } from "../models/regionsModel";
 
 const fetchPokemon = async () => {

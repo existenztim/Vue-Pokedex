@@ -4,7 +4,7 @@ const { regionProp } = defineProps(["regionProp"]);
 </script>
 
 <template>
-  <RouterLink to="/region" class="card">
+  <RouterLink :to="`/region/${regionProp.name}`" class="card">
     <img :src="regionProp.img" :alt="`A layout image of the ${regionProp.name} region.`" />
     <div class="card-text">
       <h3>{{ regionProp.name.toUpperCase() }}</h3>

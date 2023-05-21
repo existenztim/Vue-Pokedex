@@ -11,7 +11,7 @@ const router = createRouter({
       component: SelectRegionView,
     },
     {
-      path: "/region",
+      path: "/region/:name",
       name: "region",
       component: RegionView,
     },
