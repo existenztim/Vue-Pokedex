@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import r from "../data/quiz.json";
+import regionData from "../data/quiz.json";
 import axios from "axios";
 import RegionCard from "../components/RegionCard.vue";
 import type { Region } from "../models/regionsModel";
 
 const fetchPokemon = async () => {
-  await axios.get("https://pokeapi.co/api/v2/region/").then((response) => {
-    console.log(response.data.results);
+  await axios.get("https://pokeapi.co/api/v2/pokedex/2/").then((response) => {
+    console.log(response.data.pokemon_entries[0]);
   });
 };
 
-const regions = ref(r);
+const regions = ref(regionData);
 const search = ref("");
 const checkRegions = ref(false);
 
 watch(search, () => {
-  regions.value = r.filter((region: Region) => region.name.toLowerCase().includes(search.value));
+  regions.value = regionData.filter((region: Region) =>
+    region.name.toLowerCase().includes(search.value)
+  );
   regions.value.length > 0 ? (checkRegions.value = false) : (checkRegions.value = true);
 });
 
@@ -44,9 +46,15 @@ watch(search, () => {
 
 <style scoped lang="scss">
 .container {
+  font-family: "Pokemon Solid", sans-serif;
+  color: gold;
   max-width: 1000px;
   margin: 0 auto;
 
+  a {
+    color: gold;
+    text-decoration: none;
+  }
   header {
     margin-bottom: 1rem;
     margin-top: 1rem;

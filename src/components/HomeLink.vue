@@ -8,4 +8,9 @@ import { RouterLink } from "vue-router"; //RouterLink help prevent page refreshi
   </h1>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+h1 {
+  font-family: "Pokemon Solid", sans-serif;
+  color: gold;
+}
+</style>

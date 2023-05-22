@@ -35,6 +35,7 @@ const { regionProp } = defineProps(["regionProp"]);
   }
   .card-text {
     padding: 0 0.25rem;
+    background-color: #2a75bb;
 
     h3 {
       font-weight: bold;
