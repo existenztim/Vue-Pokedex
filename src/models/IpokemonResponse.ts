@@ -1,31 +1,8 @@
-import type { Ipokemon } from "./Ipokemon";
 export interface IpokemonResponse {
-  abilities: Array<object>;
-  id: number;
-  main_region: {
-    name: string;
-    url: string;
-  };
-  moves: Array<{
-    name: string;
-    url: string;
-  }>;
-  name: string;
-  names: Array<{
-    language: {
-      name: string;
-      url: string;
-    };
-    name: string;
-  }>;
-  pokemon_species: Ipokemon[];
-
-  types: Array<{
-    name: string;
-    url: string;
-  }>;
-  version_groups: Array<{
-    name: string;
-    url: string;
-  }>;
+  abilities: string[]; //add ability interface
+  base_experience: number;
+  forms: string[]; //add forms interface? prob not
+  game_indicies: string[]; //add game_indicies interface? prob not
+  height: number;
+  held_items: string[] //add held_items interface? prob not
 }

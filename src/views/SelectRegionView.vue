@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import regionData from "../data/quiz.json";
+import regionData from "../data/mockedPokemon.json";
 import RegionCard from "../components/RegionCard.vue";
-import type { Region } from "../models/regionsModel";
+import type { Iregion } from "../models/Iregion";
 
 const regions = ref(regionData);
 const search = ref("");
 const checkRegions = ref(false);
 
 watch(search, () => {
-  regions.value = regionData.filter((region: Region) =>
+  regions.value = regionData.filter((region: Iregion) =>
     region.name.toLowerCase().includes(search.value)
   );
   regions.value.length > 0 ? (checkRegions.value = false) : (checkRegions.value = true);
@@ -36,7 +36,6 @@ watch(search, () => {
 
 <style scoped lang="scss">
 .container {
-  font-family: "Pokemon Solid", sans-serif;
   color: gold;
   max-width: 1000px;
   margin: 0 auto;

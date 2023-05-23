@@ -1,5 +1,5 @@
 {
-  "files": ["./src/data/quiz.json"],
+  "files": ["./src/data/mockedPokemon.json"],
   "references": [
     {
       "path": "./tsconfig.node.json"
