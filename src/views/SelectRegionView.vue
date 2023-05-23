@@ -1,15 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import regionData from "../data/quiz.json";
-import axios from "axios";
 import RegionCard from "../components/RegionCard.vue";
 import type { Region } from "../models/regionsModel";
-
-const fetchPokemon = async () => {
-  await axios.get("https://pokeapi.co/api/v2/pokedex/2/").then((response) => {
-    console.log(response.data.pokemon_entries[0]);
-  });
-};
 
 const regions = ref(regionData);
 const search = ref("");
@@ -21,8 +14,6 @@ watch(search, () => {
   );
   regions.value.length > 0 ? (checkRegions.value = false) : (checkRegions.value = true);
 });
-
-//fetchPokemon();
 </script>
 
 <template>
@@ -30,7 +21,6 @@ watch(search, () => {
     <header>
       <input v-model.trim="search" type="text" placeholder="Search category..." />
     </header>
-    <button @click="fetchPokemon">tryck för att testa fetch</button>
     <p v-if="checkRegions">No matches 😢</p>
 
     <div class="options-container">

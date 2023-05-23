@@ -2,14 +2,14 @@
   {
     "id": "1",
     "name": "kanto",
-    "url": "https://pokeapi.co/api/v2/region/1/",
+    "url": "https://pokeapi.co/api/v2/generation/1/",
     "img": "https://www.pokepedia.fr/images/thumb/4/44/Kanto_LGPE.png/800px-Kanto_LGPE.png?20180712141151",
     "pokemons": "150"
   },
   {
     "id": "2",
     "name": "johto",
-    "url": "https://pokeapi.co/api/v2/region/2/",
+    "url": "https://pokeapi.co/api/v2/generation/2/",
     "img": "https://www.pokepedia.fr/images/thumb/f/f2/Johto_HGSS.jpg/800px-Johto_HGSS.jpg?20101107131531",
     "pokemons": "99"
   },
