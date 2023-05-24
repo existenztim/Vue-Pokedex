@@ -2,16 +2,14 @@
 import { useRoute } from "vue-router";
 
 const { pokemonProp } = defineProps(["pokemonProp"]);
-const baseUrl = "https://pokeapi.co/api/v2/pokemon";
-const pokemonName = pokemonProp.name;
+//const baseUrl = "https://pokeapi.co/api/v2/pokemon";
+//const pokemonName = pokemonProp.name;
 const route = useRoute();
 
 const pokemonRoute = {
   region: "region",
-  name: route.params.name
-}
-
-
+  name: route.params.name,
+};
 </script>
 
 <template>

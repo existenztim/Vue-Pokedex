@@ -1,8 +1,22 @@
 export interface IpokemonResponse {
-  abilities: string[]; //add ability interface
+  //abilities: string[]; //add ability interface
   base_experience: number;
-  forms: string[]; //add forms interface? prob not
-  game_indicies: string[]; //add game_indicies interface? prob not
-  height: number;
-  held_items: string[] //add held_items interface? prob not
+  height: number; // i dcm
+  weight: number;
+  id: number;
+  //moves: string[]; //skillnad på abilites?
+  name: string;
+  sprites: {
+    front_default: string;
+    back_default: string;
+  };
+
+  stats: [
+    {
+      base_stat: number;
+      stat: {
+        name: string;
+      };
+    }
+  ];
 }
