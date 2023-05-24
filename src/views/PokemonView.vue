@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import PokemonSize from "@/components/pokemonCard/PokemonSize.vue";
-import PokemonSprite from "@/components/pokemonCard/PokemonSprite.vue";
-import PokemonStat from "@/components/pokemonCard/PokemonStat.vue";
-import type { IpokemonResponse } from "@/models/IpokemonResponse";
-import axios from "axios";
-import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import PokemonSize from '@/components/pokemonCard/PokemonSize.vue';
+import PokemonSprite from '@/components/pokemonCard/PokemonSprite.vue';
+import PokemonStat from '@/components/pokemonCard/PokemonStat.vue';
+import ErrorMsg from '@/components/ErrorMsg.vue';
+import type { IpokemonResponse } from '@/models/IpokemonResponse';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 const pokemon = ref<IpokemonResponse>();
+let errorMsg = ref(false);
 const route = useRoute();
 const pokeUrl = route.params.pokemon;
 
 onMounted(() => {
-  try {
-    axios.get<IpokemonResponse>(`https://pokeapi.co/api/v2/pokemon/${pokeUrl}`).then((response) => {
+  axios
+    .get<IpokemonResponse>(`https://pokeapi.co/api/v2/pokemon/${pokeUrl}`)
+    .then((response) => {
       const data = response.data;
       pokemon.value = {
         base_experience: data.base_experience,
@@ -24,10 +27,11 @@ onMounted(() => {
         sprites: data.sprites,
         stats: data.stats,
       };
+    })
+    .catch((err) => {
+      console.log(err);
+      errorMsg.value = true;
     });
-  } catch (err) {
-    console.log(err);
-  }
 });
 </script>
 
@@ -37,6 +41,10 @@ onMounted(() => {
     <div class="pokemon-sprite-container"><PokemonSprite :pokemon="pokemon" /></div>
     <div class="pokemon-size-container"><PokemonSize :pokemon="pokemon" /></div>
     <div class="pokemon-stat-container"><PokemonStat :pokemon="pokemon" /></div>
+  </div>
+
+  <div v-if="errorMsg">
+    <ErrorMsg />
   </div>
 </template>
 
@@ -52,7 +60,8 @@ onMounted(() => {
   border-radius: 15px;
   margin-top: 1rem;
   h1 {
-    font-family: "Pokemon Solid", sans-serif;
+    font-family: 'Pokemon Solid', sans-serif;
+    color: #2a75bb;
   }
 }
 </style>

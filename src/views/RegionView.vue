@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
-import regionData from "../data/mockedPokemon.json";
-import axios from "axios";
-import type { IpokemonsResponse } from "@/models/IpokemonsResponse";
-import type { Ipokemon } from "@/models/Ipokemon";
-import PokemonLink from "@/components/PokemonLink.vue";
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import regionData from '../data/mockedPokemon.json';
+import axios from 'axios';
+import type { IpokemonsResponse } from '@/models/IpokemonsResponse';
+import type { Ipokemon } from '@/models/Ipokemon';
+import PokemonLink from '@/components/PokemonLink.vue';
+import ErrorMsg from '@/components/ErrorMsg.vue';
 //https://pokeapi.co/api/v2/pokemon/?offset=40&limit=20
 //"https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20
 //https://pokeapi.co/api/v2/pokemon?limit=151&offset=0
@@ -19,16 +20,15 @@ const region = regionData.find((region) => region.name === regionName);
 
 onMounted(() => {
   if (region) {
-    try {
-      axios
-        .get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`)
-        .then((response) => {
-          pokemons.value = response.data.results;
-        });
-    } catch (err) {
-      console.log(err);
-      errorMsg.value = true;
-    }
+    axios
+      .get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`)
+      .then((response) => {
+        pokemons.value = response.data.results;
+      })
+      .catch((err) => {
+        console.log(err);
+        errorMsg.value = true;
+      });
   }
 });
 </script>
@@ -42,6 +42,10 @@ onMounted(() => {
     <p>Can't find the region you are looking for 😢</p>
   </div>
 
+  <div v-if="errorMsg">
+    <ErrorMsg />
+  </div>
+
   <div v-if="pokemons" class="pokemon-list">
     <PokemonLink v-for="pokemon in pokemons" :key="pokemon.name" :pokemonProp="pokemon" />
   </div>
@@ -49,10 +53,10 @@ onMounted(() => {
 
 <style scoped lang="scss">
 h1 {
-  font-family: "Pokemon Solid", sans-serif;
+  font-family: 'Pokemon Solid', sans-serif;
 }
 
-div[class$="-container"] {
+div[class$='-container'] {
   display: flex;
   justify-content: center;
   color: gold;

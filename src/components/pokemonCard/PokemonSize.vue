@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { pokemon } = defineProps(["pokemon"]);
+const { pokemon } = defineProps(['pokemon']);
 </script>
 
 <template>

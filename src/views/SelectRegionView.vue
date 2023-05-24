@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import regionData from "../data/mockedPokemon.json";
-import RegionCard from "../components/RegionCard.vue";
-import type { Iregion } from "../models/Iregion";
+import { ref, watch } from 'vue';
+import regionData from '../data/mockedPokemon.json';
+import RegionCard from '../components/RegionCard.vue';
+import type { Iregion } from '../models/Iregion';
 
 const regions = ref(regionData);
-const search = ref("");
+const search = ref('');
 const checkRegions = ref(false);
 
 watch(search, () => {
-  regions.value = regionData.filter((region: Iregion) =>
-    region.name.toLowerCase().includes(search.value)
-  );
+  regions.value = regionData.filter((region: Iregion) => region.name.toLowerCase().includes(search.value));
   regions.value.length > 0 ? (checkRegions.value = false) : (checkRegions.value = true);
 });
 </script>

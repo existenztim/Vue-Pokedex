@@ -6,7 +6,7 @@
 
 <style scoped lang="scss">
 .not-found {
-  font-family: "Pokemon Solid", sans-serif;
+  font-family: 'Pokemon Solid', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;

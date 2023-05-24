@@ -1,7 +1,7 @@
 export interface IpokemonResponse {
   //abilities: string[]; //add ability interface
   base_experience: number;
-  height: number; // i dcm
+  height: number; 
   weight: number;
   id: number;
   //moves: string[]; //skillnad på abilites?
