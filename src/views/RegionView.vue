@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import regionData from '../data/mockedPokemon.json';
 import axios from 'axios';
@@ -13,10 +13,20 @@ import ErrorMsg from '@/components/ErrorMsg.vue';
 const route = useRoute();
 
 let pokemons = ref<Ipokemon[]>([]);
+let pokemonsSearch = ref<Ipokemon[]>([]);
 let errorMsg = ref(false);
 
 const regionName = route.params.name;
 const region = regionData.find((region) => region.name === regionName);
+
+const search = ref('');
+
+watch(search, () => {
+  search.value = search.value.toLowerCase();
+  pokemons.value = pokemonsSearch.value.filter((pokemon: Ipokemon) =>
+    pokemon.name.toLowerCase().includes(search.value)
+  );
+});
 
 onMounted(() => {
   if (region) {
@@ -24,6 +34,7 @@ onMounted(() => {
       .get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`)
       .then((response) => {
         pokemons.value = response.data.results;
+        pokemonsSearch.value = response.data.results;
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +45,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="region" :class="`${region.name}-container`">
+  <div class="search-container">
+    <input v-model.trim="search" type="text" placeholder="Find what you look for..." />
+  </div>
+  <div v-if="region" :class="`${region.name}-region-container`">
     <h1>Pokemons in {{ region.name }}.</h1>
   </div>
 
@@ -54,14 +68,26 @@ onMounted(() => {
 <style scoped lang="scss">
 h1 {
   font-family: 'Pokemon Solid', sans-serif;
+  text-shadow: 2px 4px 2px #2a75bb;
 }
 
-div[class$='-container'] {
+div[class$='region-container'] {
   display: flex;
   justify-content: center;
   color: gold;
 }
-
+.search-container {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex;
+  input {
+    border: none;
+    background-color: rgba($color: #616161, $alpha: 0.5);
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+}
 .pokemon-list {
   display: flex;
   flex-direction: column;
