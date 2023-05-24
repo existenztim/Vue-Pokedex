@@ -27,8 +27,10 @@ div[class$='-link'] {
   justify-content: space-around;
   gap: 2rem;
   margin: 1rem;
-  h3 {
+  h3,
+  p {
     font-weight: bold;
+    text-shadow: 2px 4px 2px #2a75bb;
   }
   a {
     color: gold;

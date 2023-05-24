@@ -12,7 +12,7 @@ import { RouterLink } from 'vue-router'; //RouterLink help prevent page refreshi
 h1,
 a {
   font-family: 'Pokemon Solid', sans-serif;
-  font-size: 4rem;
+  font-size: clamp(2rem, 10vw, 4rem);
   text-shadow: 2px 4px 2px #2a75bb;
   color: gold;
 

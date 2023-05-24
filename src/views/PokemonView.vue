@@ -59,6 +59,7 @@ onMounted(() => {
   margin: 0 auto;
   border-radius: 15px;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   h1 {
     font-family: 'Pokemon Solid', sans-serif;
     color: #2a75bb;

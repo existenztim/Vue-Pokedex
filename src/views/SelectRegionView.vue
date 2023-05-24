@@ -9,6 +9,7 @@ const search = ref('');
 const checkRegions = ref(false);
 
 watch(search, () => {
+  search.value = search.value.toLowerCase();
   regions.value = regionData.filter((region: Iregion) => region.name.toLowerCase().includes(search.value));
   regions.value.length > 0 ? (checkRegions.value = false) : (checkRegions.value = true);
 });
@@ -16,9 +17,9 @@ watch(search, () => {
 
 <template>
   <div class="container">
-    <header>
-      <input v-model.trim="search" type="text" placeholder="Search category..." />
-    </header>
+    <div class="search-container">
+      <input v-model.trim="search" type="text" placeholder="Find what you look for..." />
+    </div>
     <p v-if="checkRegions">No matches 😢</p>
 
     <div class="options-container">
@@ -37,7 +38,7 @@ watch(search, () => {
     color: gold;
     text-decoration: none;
   }
-  header {
+  .search-container {
     margin-bottom: 1rem;
     margin-top: 1rem;
     display: flex;
@@ -59,6 +60,7 @@ watch(search, () => {
   .options-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin-top: 2rem;
   }
 }
