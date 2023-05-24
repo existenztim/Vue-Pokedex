@@ -78,4 +78,14 @@ div[class$='-container'] {
     margin: 1rem;
   }
 }
+
+.no-match-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  p {
+    color: black;
+  }
+}
 </style>

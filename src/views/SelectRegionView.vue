@@ -22,12 +22,7 @@ watch(search, () => {
     <p v-if="checkRegions">No matches 😢</p>
 
     <div class="options-container">
-      <RegionCard
-        v-for="region in regions"
-        class="card"
-        :key="region.id"
-        :regionProp="region"
-      /><!--regionProp is a prop to pass data, it can be named anything-->
+      <RegionCard v-for="region in regions" class="card" :key="region.id" :regionProp="region" />
     </div>
   </div>
 </template>
