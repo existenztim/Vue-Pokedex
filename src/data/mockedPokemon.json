@@ -15,14 +15,14 @@
     "limit": 96,
     "offset": 151,
     "img": "https://www.pokepedia.fr/images/thumb/f/f2/Johto_HGSS.jpg/800px-Johto_HGSS.jpg?20101107131531",
-    "pokemons": "99"
+    "pokemons": "95"
   },
   {
     "id": "3",
     "name": "hoenn",
     "url": "https://pokeapi.co/api/v2/pokemon?",
-    "limit": 96,
-    "offset": 151,
+    "limit": 135,
+    "offset": 251,
     "img": "https://www.pokepedia.fr/images/thumb/4/4c/Carte_de_Hoenn_ROSA.png/800px-Carte_de_Hoenn_ROSA.png?20141226143255",
     "pokemons": "134"
   },
@@ -30,14 +30,14 @@
     "id": "4",
     "name": "sinnoh",
     "url": "https://pokeapi.co/api/v2/pokemon?",
-    "limit": 96,
-    "offset": 151,
+    "limit": 107,
+    "offset": 386,
     "img": "https://www.pokepedia.fr/images/thumb/9/99/Sinnoh-DEPS.png/800px-Sinnoh-DEPS.png?20210818210121",
     "pokemons": "106"
   },
   {
     "id": "5",
-    "name": "unova",
+    "name": "unova - stil in progress",
     "url": "https://pokeapi.co/api/v2/pokemon?",
     "limit": 96,
     "offset": 151,
@@ -46,7 +46,7 @@
   },
   {
     "id": "6",
-    "name": "kalos",
+    "name": "kalos - stil in progress",
     "url": "https://pokeapi.co/api/v2/pokemon?",
     "limit": 96,
     "offset": 151,
@@ -55,7 +55,7 @@
   },
   {
     "id": "7",
-    "name": "alola",
+    "name": "alola - stil in progress",
     "url": "https://pokeapi.co/api/v2/pokemon?",
     "limit": 96,
     "offset": 151,
@@ -64,7 +64,7 @@
   },
   {
     "id": "8",
-    "name": "galar",
+    "name": "galar - stil in progress",
     "url": "https://pokeapi.co/api/v2/pokemon?",
     "limit": 96,
     "offset": 151,
@@ -73,7 +73,7 @@
   },
   {
     "id": "9",
-    "name": "hisui",
+    "name": "hisui - stil in progress",
     "url": "https://pokeapi.co/api/v2/pokemon?",
     "limit": 96,
     "offset": 151,
@@ -82,7 +82,7 @@
   },
   {
     "id": "10",
-    "name": "paldea",
+    "name": "paldea - stil in progress",
     "url": "https://pokeapi.co/api/v2/pokemon?",
     "limit": 96,
     "offset": 151,

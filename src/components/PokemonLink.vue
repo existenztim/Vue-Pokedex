@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router";
+import { useRoute } from 'vue-router';
 
-const { pokemonProp } = defineProps(["pokemonProp"]);
-const baseUrl = "https://pokeapi.co/api/v2/pokemon";
-const pokemonName = pokemonProp.name;
+const { pokemonProp } = defineProps(['pokemonProp']);
 const route = useRoute();
 
 const pokemonRoute = {
-  region: "region",
-  name: route.params.name
-}
-
-
+  region: 'region',
+  name: route.params.name,
+};
 </script>
 
 <template>
@@ -24,7 +20,7 @@ const pokemonRoute = {
 </template>
 
 <style scoped lang="scss">
-div[class$="-link"] {
+div[class$='-link'] {
   color: gold;
   display: flex;
   width: 300px;

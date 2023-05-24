@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router"; //RouterLink help prevent page refreshing
+import { RouterLink } from 'vue-router'; //RouterLink help prevent page refreshing
 </script>
 
 <template>
@@ -9,8 +9,9 @@ import { RouterLink } from "vue-router"; //RouterLink help prevent page refreshi
 </template>
 
 <style scoped lang="scss">
-h1, a {
-  font-family: "Pokemon Solid", sans-serif;
+h1,
+a {
+  font-family: 'Pokemon Solid', sans-serif;
   font-size: 4rem;
   text-shadow: 2px 4px 2px #2a75bb;
   color: gold;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { regionProp } = defineProps(["regionProp"]);
+const { regionProp } = defineProps(['regionProp']);
 // if we only write regionProp without {} we would have to type varname.regionProp.img
 </script>
 

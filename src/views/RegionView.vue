@@ -1,31 +1,34 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
-import regionData from "../data/mockedPokemon.json";
-import axios from "axios";
-import type { IpokemonsResponse } from "@/models/IpokemonsResponse";
-import type { Ipokemon } from "@/models/Ipokemon";
-import PokemonLink from "@/components/PokemonLink.vue";
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import regionData from '../data/mockedPokemon.json';
+import axios from 'axios';
+import type { IpokemonsResponse } from '@/models/IpokemonsResponse';
+import type { Ipokemon } from '@/models/Ipokemon';
+import PokemonLink from '@/components/PokemonLink.vue';
+import ErrorMsg from '@/components/ErrorMsg.vue';
 //https://pokeapi.co/api/v2/pokemon/?offset=40&limit=20
 //"https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20
 //https://pokeapi.co/api/v2/pokemon?limit=151&offset=0
 const route = useRoute();
 
 let pokemons = ref<Ipokemon[]>([]);
+let errorMsg = ref(false);
+
 const regionName = route.params.name;
 const region = regionData.find((region) => region.name === regionName);
 
-
 onMounted(() => {
   if (region) {
-    try {
-      axios.get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`).then((response) => {
+    axios
+      .get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`)
+      .then((response) => {
         pokemons.value = response.data.results;
-        console.log("response", response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        errorMsg.value = true;
       });
-    } catch (err) {
-      console.log(err);
-    }
   }
 });
 </script>
@@ -34,7 +37,15 @@ onMounted(() => {
   <div v-if="region" :class="`${region.name}-container`">
     <h1>Pokemons in {{ region.name }}.</h1>
   </div>
-  <div v-else class="no-match-container">Can't find the region you are looking for 😢</div>
+
+  <div v-else class="no-match-container">
+    <p>Can't find the region you are looking for 😢</p>
+  </div>
+
+  <div v-if="errorMsg">
+    <ErrorMsg />
+  </div>
+
   <div v-if="pokemons" class="pokemon-list">
     <PokemonLink v-for="pokemon in pokemons" :key="pokemon.name" :pokemonProp="pokemon" />
   </div>
@@ -42,10 +53,10 @@ onMounted(() => {
 
 <style scoped lang="scss">
 h1 {
-  font-family: "Pokemon Solid", sans-serif;
+  font-family: 'Pokemon Solid', sans-serif;
 }
 
-div[class$="-container"] {
+div[class$='-container'] {
   display: flex;
   justify-content: center;
   color: gold;
@@ -65,6 +76,16 @@ div[class$="-container"] {
   margin-bottom: 2rem;
   p {
     margin: 1rem;
+  }
+}
+
+.no-match-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  p {
+    color: black;
   }
 }
 </style>
