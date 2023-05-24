@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import PokemonSize from "@/components/pokemonCard/PokemonSize.vue";
+import PokemonSprite from "@/components/pokemonCard/PokemonSprite.vue";
+import PokemonStat from "@/components/pokemonCard/PokemonStat.vue";
 import type { IpokemonResponse } from "@/models/IpokemonResponse";
 import axios from "axios";
 import { onMounted, ref } from "vue";
@@ -31,15 +34,9 @@ onMounted(() => {
 <template>
   <div v-if="pokemon" class="pokemon-card" :key="pokemon.id.toString()">
     <h1>{{ pokemon.name }}</h1>
-    <div>
-      <img :src="pokemon.sprites.front_default" :alt="`A front picture of ${pokemon.name}`" />
-      <button>More images</button>
-    </div>
-    <p>Height : {{ 0.1 * pokemon.height }} meters.</p>
-    <p>weight : {{ 0.1 * pokemon.weight }} kg.</p>
-    <div v-for="stat in pokemon.stats">
-      <p>{{ stat.stat.name }} : {{ stat.base_stat }}</p>
-    </div>
+    <div class="pokemon-sprite-container"><PokemonSprite :pokemon="pokemon" /></div>
+    <div class="pokemon-size-container"><PokemonSize :pokemon="pokemon" /></div>
+    <div class="pokemon-stat-container"><PokemonStat :pokemon="pokemon" /></div>
   </div>
 </template>
 
@@ -49,9 +46,13 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  img {
-    width: 200px;
+  background-color: gold;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 15px;
+  margin-top: 1rem;
+  h1 {
+    font-family: "Pokemon Solid", sans-serif;
   }
 }
 </style>

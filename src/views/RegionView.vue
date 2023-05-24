@@ -12,19 +12,22 @@ import PokemonLink from "@/components/PokemonLink.vue";
 const route = useRoute();
 
 let pokemons = ref<Ipokemon[]>([]);
+let errorMsg = ref(false);
+
 const regionName = route.params.name;
 const region = regionData.find((region) => region.name === regionName);
-
 
 onMounted(() => {
   if (region) {
     try {
-      axios.get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`).then((response) => {
-        pokemons.value = response.data.results;
-        console.log("response", response.data);
-      });
+      axios
+        .get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`)
+        .then((response) => {
+          pokemons.value = response.data.results;
+        });
     } catch (err) {
       console.log(err);
+      errorMsg.value = true;
     }
   }
 });
@@ -34,7 +37,11 @@ onMounted(() => {
   <div v-if="region" :class="`${region.name}-container`">
     <h1>Pokemons in {{ region.name }}.</h1>
   </div>
-  <div v-else class="no-match-container">Can't find the region you are looking for 😢</div>
+
+  <div v-else class="no-match-container">
+    <p>Can't find the region you are looking for 😢</p>
+  </div>
+
   <div v-if="pokemons" class="pokemon-list">
     <PokemonLink v-for="pokemon in pokemons" :key="pokemon.name" :pokemonProp="pokemon" />
   </div>
