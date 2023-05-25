@@ -134,14 +134,14 @@ const { pokemon } = defineProps(['pokemon']);
     border-radius: 5px;
     border: 1px solid #705746;
   }
-  .dark span {
+  .steel span {
     color: #b7b7ce;
     background-color: rgba($color: #000000, $alpha: 0.6);
     padding: 0.3rem;
     border-radius: 5px;
     border: 1px solid #b7b7ce;
   }
-  .dark span {
+  .fairy span {
     color: #d685ad;
     background-color: rgba($color: #000000, $alpha: 0.6);
     padding: 0.3rem;

@@ -6,10 +6,10 @@ import axios from 'axios';
 import type { IpokemonsResponse } from '@/models/IpokemonsResponse';
 import type { Ipokemon } from '@/models/Ipokemon';
 import PokemonLink from '@/components/PokemonLink.vue';
-import ErrorMsg from '@/components/ErrorMsg.vue';
-//https://pokeapi.co/api/v2/pokemon/?offset=40&limit=20
-//"https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20
-//https://pokeapi.co/api/v2/pokemon?limit=151&offset=0
+import ErrorMsg from '@/components/userFeedback/ErrorMsg.vue';
+import TakeMeBack from '@/components/TakeMeBack.vue';
+import NoMatch from '@/components/userFeedback/NoMatch.vue';
+
 const route = useRoute();
 
 let pokemons = ref<Ipokemon[]>([]);
@@ -18,7 +18,7 @@ let errorMsg = ref(false);
 
 const regionName = route.params.name;
 const region = regionData.find((region) => region.name === regionName);
-
+const checkPokemons = ref(false);
 const search = ref('');
 
 watch(search, () => {
@@ -26,6 +26,7 @@ watch(search, () => {
   pokemons.value = pokemonsSearch.value.filter((pokemon: Ipokemon) =>
     pokemon.name.toLowerCase().includes(search.value)
   );
+  pokemons.value.length > 0 ? (checkPokemons.value = false) : (checkPokemons.value = true);
 });
 
 onMounted(() => {
@@ -45,16 +46,14 @@ onMounted(() => {
 </script>
 
 <template>
+  <TakeMeBack />
   <section class="container">
     <div class="search-container">
-      <input v-model.trim="search" type="text" placeholder="Find what you look for..." />
-    </div>
-    <div v-if="region" :class="`${region.name}-region-container`">
-      <h1>Pokemons in {{ region.name }}.</h1>
+      <input v-model.trim="search" type="text" placeholder="Search..." />
     </div>
 
-    <div v-else class="no-match-container">
-      <p>Can't find the region you are looking for 😢</p>
+    <div v-if="region" :class="`${region.name}-region-container`">
+      <h1>Pokemons in {{ region.name }}.</h1>
     </div>
 
     <div v-if="errorMsg">
@@ -64,6 +63,7 @@ onMounted(() => {
     <div v-if="pokemons" class="pokemon-list">
       <PokemonLink v-for="pokemon in pokemons" :key="pokemon.name" :pokemonProp="pokemon" />
     </div>
+    <NoMatch v-if="checkPokemons" />
   </section>
 </template>
 
@@ -86,10 +86,10 @@ onMounted(() => {
     margin-bottom: 1rem;
     margin-top: 1rem;
     display: flex;
-    align-items: flex;
+
     input {
       border: none;
-      color: #382d01;
+      color: #ffffff;
       font-weight: bold;
       background-color: rgba($color: #2a75bb, $alpha: 0.5);
       padding: 0.5rem;
@@ -110,16 +110,6 @@ onMounted(() => {
     margin-bottom: 2rem;
     p {
       margin: 1rem;
-    }
-  }
-
-  .no-match-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    p {
-      color: black;
     }
   }
 }
