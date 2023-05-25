@@ -11,11 +11,15 @@ import { useRoute } from 'vue-router';
 const pokemon = ref<IpokemonResponse>();
 let errorMsg = ref(false);
 const route = useRoute();
-const pokeUrl = route.params.pokemon;
+
+const pokeUrl = {
+  pokeName: route.params.pokemon,
+  regionName: route.params.name,
+};
 
 onMounted(() => {
   axios
-    .get<IpokemonResponse>(`https://pokeapi.co/api/v2/pokemon/${pokeUrl}`)
+    .get<IpokemonResponse>(`https://pokeapi.co/api/v2/pokemon/${pokeUrl.pokeName}`)
     .then((response) => {
       const data = response.data;
       pokemon.value = {
@@ -36,6 +40,10 @@ onMounted(() => {
 </script>
 
 <template>
+  <RouterLink :to="`/region/${pokeUrl.regionName}`">
+    <a class="back-to-list">Take me back to the list.</a>
+  </RouterLink>
+
   <div v-if="pokemon" class="pokemon-card" :key="pokemon.id.toString()">
     <h1>{{ pokemon.name }}</h1>
     <div class="pokemon-sprite-container"><PokemonSprite :pokemon="pokemon" /></div>
@@ -49,17 +57,23 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+.back-to-list {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
 .pokemon-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: gold;
+  background-image: linear-gradient(to left bottom, #ffcb05, #f4c306, #2a75bb, #3c5aa6);
   max-width: 600px;
   margin: 0 auto;
   border-radius: 15px;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   h1 {
     font-family: 'Pokemon Solid', sans-serif;
     color: #2a75bb;

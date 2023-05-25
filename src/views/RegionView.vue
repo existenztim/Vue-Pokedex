@@ -45,73 +45,82 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="search-container">
-    <input v-model.trim="search" type="text" placeholder="Find what you look for..." />
-  </div>
-  <div v-if="region" :class="`${region.name}-region-container`">
-    <h1>Pokemons in {{ region.name }}.</h1>
-  </div>
+  <section class="container">
+    <div class="search-container">
+      <input v-model.trim="search" type="text" placeholder="Find what you look for..." />
+    </div>
+    <div v-if="region" :class="`${region.name}-region-container`">
+      <h1>Pokemons in {{ region.name }}.</h1>
+    </div>
 
-  <div v-else class="no-match-container">
-    <p>Can't find the region you are looking for 😢</p>
-  </div>
+    <div v-else class="no-match-container">
+      <p>Can't find the region you are looking for 😢</p>
+    </div>
 
-  <div v-if="errorMsg">
-    <ErrorMsg />
-  </div>
+    <div v-if="errorMsg">
+      <ErrorMsg />
+    </div>
 
-  <div v-if="pokemons" class="pokemon-list">
-    <PokemonLink v-for="pokemon in pokemons" :key="pokemon.name" :pokemonProp="pokemon" />
-  </div>
+    <div v-if="pokemons" class="pokemon-list">
+      <PokemonLink v-for="pokemon in pokemons" :key="pokemon.name" :pokemonProp="pokemon" />
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
-h1 {
-  font-family: 'Pokemon Solid', sans-serif;
-  text-shadow: 2px 4px 2px #2a75bb;
-}
-
-div[class$='region-container'] {
-  display: flex;
-  justify-content: center;
+.container {
   color: gold;
-}
-.search-container {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-  display: flex;
-  align-items: flex;
-  input {
-    border: none;
-    background-color: rgba($color: #616161, $alpha: 0.5);
-    padding: 0.5rem;
-    border-radius: 5px;
-  }
-}
-.pokemon-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 1000px;
   margin: 0 auto;
-  max-width: 700px;
-  overflow-y: scroll;
-  background: rgba($color: #2a75bb, $alpha: 0.5);
-  border-radius: 5px;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  p {
-    margin: 1rem;
+  h1 {
+    font-family: 'Pokemon Solid', sans-serif;
+    text-shadow: 2px 4px 2px #2a75bb;
   }
-}
 
-.no-match-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  p {
-    color: black;
+  div[class$='region-container'] {
+    display: flex;
+    justify-content: center;
+    color: gold;
+  }
+  .search-container {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: flex;
+    input {
+      border: none;
+      color: #382d01;
+      font-weight: bold;
+      background-color: rgba($color: #2a75bb, $alpha: 0.5);
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+  }
+  .pokemon-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 700px;
+    overflow-y: scroll;
+    background: rgba($color: #2a75bb, $alpha: 0.5);
+    border-radius: 5px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    p {
+      margin: 1rem;
+    }
+  }
+
+  .no-match-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    p {
+      color: black;
+    }
   }
 }
 </style>
