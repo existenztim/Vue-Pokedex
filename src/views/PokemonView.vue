@@ -7,6 +7,7 @@ import type { IpokemonResponse } from '@/models/IpokemonResponse';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import PokemonType from '@/components/pokemonCard/PokemonType.vue';
 
 const pokemon = ref<IpokemonResponse>();
 let errorMsg = ref(false);
@@ -30,7 +31,9 @@ onMounted(() => {
         name: data.name,
         sprites: data.sprites,
         stats: data.stats,
+        types: data.types,
       };
+      console.log(pokemon.value.types[0].type.name);
     })
     .catch((err) => {
       console.log(err);
@@ -47,8 +50,11 @@ onMounted(() => {
   <div v-if="pokemon" class="pokemon-card" :key="pokemon.id.toString()">
     <h1>{{ pokemon.name }}</h1>
     <div class="pokemon-sprite-container"><PokemonSprite :pokemon="pokemon" /></div>
-    <div class="pokemon-size-container"><PokemonSize :pokemon="pokemon" /></div>
-    <div class="pokemon-stat-container"><PokemonStat :pokemon="pokemon" /></div>
+    <div class="data-container">
+      <div class="pokemon-size-container"><PokemonSize :pokemon="pokemon" /></div>
+      <div class="pokemon-type-container"><PokemonType :pokemon="pokemon" /></div>
+      <div class="pokemon-stat-container"><PokemonStat :pokemon="pokemon" /></div>
+    </div>
   </div>
 
   <div v-if="errorMsg">
@@ -77,6 +83,11 @@ onMounted(() => {
   h1 {
     font-family: 'Pokemon Solid', sans-serif;
     color: #2a75bb;
+  }
+  .data-container {
+    width: 225px;
+    margin: 0.3rem;
+    padding: 0.3rem;
   }
 }
 </style>
