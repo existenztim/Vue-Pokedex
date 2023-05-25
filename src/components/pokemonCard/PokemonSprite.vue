@@ -14,6 +14,7 @@ img {
   margin: 1rem;
   width: 200px;
   background-color: azure;
+  border: 5px solid #c7a008;
   border-radius: 5px;
 }
 </style>

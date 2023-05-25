@@ -6,16 +6,16 @@
     "limit": 151,
     "offset": 0,
     "img": "https://www.pokepedia.fr/images/thumb/4/44/Kanto_LGPE.png/800px-Kanto_LGPE.png?20180712141151",
-    "pokemons": "150"
+    "pokemons": "151"
   },
   {
     "id": "2",
     "name": "johto",
     "url": "https://pokeapi.co/api/v2/pokemon?",
-    "limit": 96,
+    "limit": 100,
     "offset": 151,
     "img": "https://www.pokepedia.fr/images/thumb/f/f2/Johto_HGSS.jpg/800px-Johto_HGSS.jpg?20101107131531",
-    "pokemons": "95"
+    "pokemons": "100"
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@
     "limit": 135,
     "offset": 251,
     "img": "https://www.pokepedia.fr/images/thumb/4/4c/Carte_de_Hoenn_ROSA.png/800px-Carte_de_Hoenn_ROSA.png?20141226143255",
-    "pokemons": "134"
+    "pokemons": "135"
   },
   {
     "id": "4",
@@ -33,25 +33,25 @@
     "limit": 107,
     "offset": 386,
     "img": "https://www.pokepedia.fr/images/thumb/9/99/Sinnoh-DEPS.png/800px-Sinnoh-DEPS.png?20210818210121",
-    "pokemons": "106"
+    "pokemons": "107"
   },
   {
     "id": "5",
-    "name": "unova - stil in progress",
+    "name": "unova",
     "url": "https://pokeapi.co/api/v2/pokemon?",
-    "limit": 96,
-    "offset": 151,
+    "limit": 156,
+    "offset": 493,
     "img": "https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/06/Pokemon-Unova-Edited.jpg",
-    "pokemons": "155"
+    "pokemons": "156"
   },
   {
     "id": "6",
-    "name": "kalos - stil in progress",
+    "name": "kalos",
     "url": "https://pokeapi.co/api/v2/pokemon?",
-    "limit": 96,
-    "offset": 151,
+    "limit": 72,
+    "offset": 649,
     "img": "https://www.pokepedia.fr/images/thumb/d/d1/Kalos_-_XY.png/800px-Kalos_-_XY.png?20180311180222",
-    "pokemons": "71"
+    "pokemons": "72"
   },
   {
     "id": "7",

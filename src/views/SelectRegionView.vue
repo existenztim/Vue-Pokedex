@@ -16,16 +16,16 @@ watch(search, () => {
 </script>
 
 <template>
-  <div class="container">
+  <section class="container">
     <div class="search-container">
       <input v-model.trim="search" type="text" placeholder="Find what you look for..." />
     </div>
-    <p v-if="checkRegions">No matches 😢</p>
+    <p v-if="checkRegions" class="no-match">No matches 😢</p>
 
     <div class="options-container">
       <RegionCard v-for="region in regions" class="card" :key="region.id" :regionProp="region" />
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
@@ -51,12 +51,21 @@ watch(search, () => {
 
     input {
       border: none;
-      background-color: rgba($color: #616161, $alpha: 0.5);
+      color: #382d01;
+      font-weight: bold;
+      background-color: rgba($color: #2a75bb, $alpha: 0.5);
       padding: 0.5rem;
       border-radius: 5px;
     }
   }
-
+  .no-match {
+    background-color: #2a75bb;
+    text-align: center;
+    max-width: 200px;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
   .options-container {
     display: flex;
     flex-wrap: wrap;

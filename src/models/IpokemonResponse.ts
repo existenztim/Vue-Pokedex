@@ -1,7 +1,7 @@
 export interface IpokemonResponse {
   //abilities: string[]; //add ability interface
   base_experience: number;
-  height: number; 
+  height: number;
   weight: number;
   id: number;
   //moves: string[]; //skillnad på abilites?
@@ -15,6 +15,14 @@ export interface IpokemonResponse {
     {
       base_stat: number;
       stat: {
+        name: string;
+      };
+    }
+  ];
+  types: [
+    {
+      slot: number;
+      type: {
         name: string;
       };
     }
