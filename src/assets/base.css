@@ -59,7 +59,7 @@
 }
 
 body {
-  background: rgb(189, 209, 228);
+  background: rgb(31, 68, 102);
   margin: 0.5rem;
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;

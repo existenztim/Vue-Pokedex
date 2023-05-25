@@ -2,12 +2,13 @@
 import PokemonSize from '@/components/pokemonCard/PokemonSize.vue';
 import PokemonSprite from '@/components/pokemonCard/PokemonSprite.vue';
 import PokemonStat from '@/components/pokemonCard/PokemonStat.vue';
-import ErrorMsg from '@/components/ErrorMsg.vue';
+import ErrorMsg from '@/components/userFeedback/ErrorMsg.vue';
 import type { IpokemonResponse } from '@/models/IpokemonResponse';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import PokemonType from '@/components/pokemonCard/PokemonType.vue';
+import TakeMeBack from '@/components/TakeMeBack.vue';
 
 const pokemon = ref<IpokemonResponse>();
 let errorMsg = ref(false);
@@ -33,7 +34,6 @@ onMounted(() => {
         stats: data.stats,
         types: data.types,
       };
-      console.log(pokemon.value.types[0].type.name);
     })
     .catch((err) => {
       console.log(err);
@@ -43,9 +43,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <RouterLink :to="`/region/${pokeUrl.regionName}`">
-    <a class="back-to-list">Take me back to the list.</a>
-  </RouterLink>
+  <TakeMeBack :view="pokeUrl.regionName" />
 
   <div v-if="pokemon" class="pokemon-card" :key="pokemon.id.toString()">
     <h1>{{ pokemon.name }}</h1>

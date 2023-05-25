@@ -8,6 +8,7 @@ const pokemonRoute = {
   region: 'region',
   name: route.params.name,
 };
+//"https://raw.githubuserco…/sprites/pokemon/152.png"
 </script>
 
 <template>

@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import regionData from '../data/mockedPokemon.json';
 import RegionCard from '../components/RegionCard.vue';
 import type { Iregion } from '../models/Iregion';
+import NoMatch from '@/components/userFeedback/NoMatch.vue';
 
 const regions = ref(regionData);
 const search = ref('');
@@ -18,9 +19,9 @@ watch(search, () => {
 <template>
   <section class="container">
     <div class="search-container">
-      <input v-model.trim="search" type="text" placeholder="Find what you look for..." />
+      <input v-model.trim="search" type="text" placeholder="Search..." />
     </div>
-    <p v-if="checkRegions" class="no-match">No matches 😢</p>
+    <NoMatch v-if="checkRegions" />
 
     <div class="options-container">
       <RegionCard v-for="region in regions" class="card" :key="region.id" :regionProp="region" />
@@ -51,7 +52,7 @@ watch(search, () => {
 
     input {
       border: none;
-      color: #382d01;
+      color: #ffffff;
       font-weight: bold;
       background-color: rgba($color: #2a75bb, $alpha: 0.5);
       padding: 0.5rem;

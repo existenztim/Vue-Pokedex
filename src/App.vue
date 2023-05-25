@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import HomeLink from "./components/HomeLink.vue";
+import { RouterView } from 'vue-router';
+import HomeLink from './components/pageLayout/HomeLink.vue';
 
 //fetchPokemon();
 </script>
