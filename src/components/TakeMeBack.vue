@@ -26,5 +26,6 @@ const { view } = defineProps(['view']);
   top: 10px;
   right: 10px;
   color: gold;
+  border: 1px solid gold;
 }
 </style>
