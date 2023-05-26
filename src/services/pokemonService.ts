@@ -1,15 +1,14 @@
-// import type { IpokemonsResponse } from "@/models/IpokemonsResponse";
-// import axios from "axios";
+import type { Ipokemon } from '@/models/Ipokemon';
+import type { IpokemonsResponse } from '@/models/IpokemonsResponse';
+import type { IpokemonResponse } from '@/models/IpokemonResponse';
+import axios from 'axios';
 
-// export const getRegionData = async (region, pokemons) => {
-//   try {
-//     axios
-//       .get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`)
-//       .then((response) => {
-//         pokemons.value = response.data.results;
-//         console.log("response", response.data);
-//       });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+export const getPokemonData = async (query: string): Promise<IpokemonResponse> => {
+  let response = await axios.get<IpokemonResponse>(query);
+  return response.data;
+};
+
+export const initGetRegionData = async (query: string): Promise<Ipokemon[]> => {
+  let response = await axios.get<IpokemonsResponse>(query);
+  return response.data.results;
+};

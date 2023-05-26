@@ -2,13 +2,12 @@
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import regionData from '../data/mockedPokemon.json';
-import axios from 'axios';
-import type { IpokemonsResponse } from '@/models/IpokemonsResponse';
 import type { Ipokemon } from '@/models/Ipokemon';
 import PokemonLink from '@/components/PokemonLink.vue';
 import ErrorMsg from '@/components/userFeedback/ErrorMsg.vue';
 import TakeMeBack from '@/components/TakeMeBack.vue';
 import NoMatch from '@/components/userFeedback/NoMatch.vue';
+import { initGetRegionData } from '@/services/pokemonService';
 
 const route = useRoute();
 
@@ -31,16 +30,16 @@ watch(search, () => {
 
 onMounted(() => {
   if (region) {
-    axios
-      .get<IpokemonsResponse>(`${region.url}limit=${region.limit}&offset=${region.offset}`)
-      .then((response) => {
-        pokemons.value = response.data.results;
-        pokemonsSearch.value = response.data.results;
-      })
-      .catch((err) => {
-        console.log(err);
-        errorMsg.value = true;
+    try {
+      const query = `${region.url}limit=${region.limit}&offset=${region.offset}`;
+      initGetRegionData(query).then((pokemonsFromApi) => {
+        pokemons.value = pokemonsFromApi;
+        pokemonsSearch.value = pokemonsFromApi;
       });
+    } catch (err) {
+      console.log(err);
+      errorMsg.value = true;
+    }
   }
 });
 </script>
