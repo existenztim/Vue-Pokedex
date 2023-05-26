@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import HomeLink from './components/pageLayout/HomeLink.vue';
+import FooterBar from './components/pageLayout/FooterBar.vue';
 
 //fetchPokemon();
 </script>
@@ -8,6 +9,7 @@ import HomeLink from './components/pageLayout/HomeLink.vue';
 <template>
   <div class="home-link"><HomeLink /></div>
   <RouterView />
+  <FooterBar />
 </template>
 
 <style scoped lang="scss">

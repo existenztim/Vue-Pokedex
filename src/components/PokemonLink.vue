@@ -8,12 +8,11 @@ const pokemonRoute = {
   region: 'region',
   name: route.params.name,
 };
-//"https://raw.githubuserco…/sprites/pokemon/152.png"
 </script>
 
 <template>
   <div class="pokemon-link">
-    <h3>{{ pokemonProp.name.charAt([0]).toUpperCase() + pokemonProp.name.slice(1) }}</h3>
+    <h2>{{ pokemonProp.name.charAt([0]).toUpperCase() + pokemonProp.name.slice(1) }}</h2>
     <RouterLink :to="`/${pokemonRoute.region}/${pokemonRoute.name}/${pokemonProp.name}`">
       <p>Inspect this pokémon!</p>
     </RouterLink>
@@ -24,11 +23,12 @@ const pokemonRoute = {
 div[class$='-link'] {
   color: gold;
   display: flex;
-  width: 300px;
+  width: 350px;
   justify-content: space-around;
   gap: 2rem;
   margin: 1rem;
-  h3,
+  border-bottom: 1px solid black;
+  h2,
   p {
     font-weight: bold;
     text-shadow: 2px 4px 2px #2a75bb;

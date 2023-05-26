@@ -6,7 +6,7 @@ const { regionProp } = defineProps(['regionProp']);
   <RouterLink :to="`/region/${regionProp.name}`" class="card">
     <img :src="regionProp.img" :alt="`A layout image of the ${regionProp.name} region.`" />
     <div class="card-text">
-      <h3>{{ regionProp.name.toUpperCase() }}</h3>
+      <h2>{{ regionProp.name.toUpperCase() }}</h2>
       <p>{{ regionProp.pokemons }} number of pokemons</p>
     </div>
   </RouterLink>
@@ -36,7 +36,7 @@ const { regionProp } = defineProps(['regionProp']);
     padding: 0 0.25rem;
     background-color: #2a75bb;
 
-    h3 {
+    h2 {
       font-weight: bold;
     }
   }
