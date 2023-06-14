@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import RegionView from '../views/RegionView.vue';
 import SelectRegionView from '../views/SelectRegionView.vue';
 import NotFound from '../views/404View.vue';
 import PokemonView from '../views/PokemonView.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
